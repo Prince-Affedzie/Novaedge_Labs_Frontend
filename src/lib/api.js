@@ -18,46 +18,34 @@ async function request(path, options = {}) {
 async function fetchProjects() {
   "use cache";
   cacheLife("minutes");
-  return request("/projects");
+  try { return await request("/projects"); } catch { return null; }
 }
 
 async function fetchPosts() {
   "use cache";
   cacheLife("minutes");
-  return request("/posts");
+  try { return await request("/posts"); } catch { return null; }
 }
 
 async function fetchPost(slug) {
   "use cache";
   cacheLife("minutes");
-  return request(`/posts/${slug}`);
+  try { return await request(`/posts/${slug}`); } catch { return null; }
 }
-
 /* ---- Public helpers: same names and behaviour as before ---- */
 
 export async function getProjects() {
-  try {
-    const data = await fetchProjects();
-    return data.length ? data : fallbackProjects;
-  } catch {
-    return fallbackProjects;
-  }
+  const data = await fetchProjects();
+  return Array.isArray(data) && data.length ? data : fallbackProjects;
 }
 
 export async function getPosts() {
-  try {
-    return await fetchPosts();
-  } catch {
-    return [];
-  }
+  const data = await fetchPosts();
+  return Array.isArray(data) ? data : [];
 }
 
 export async function getPost(slug) {
-  try {
-    return await fetchPost(slug);
-  } catch {
-    return null;
-  }
+  return (await fetchPost(slug)) ?? null;
 }
 
 // Not cached: called from the admin login form later.
