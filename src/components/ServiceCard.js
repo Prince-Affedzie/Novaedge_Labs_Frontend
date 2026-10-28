@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function ServiceCard({ service }) {
+const Icon = service.icon;
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
       {service.image && (
@@ -15,7 +16,9 @@ export default function ServiceCard({ service }) {
         </div>
       )}
       <div className="p-6">
-        <div className="text-3xl">{service.icon}</div>
+        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+        <Icon size={24} strokeWidth={1.8} aria-hidden="true" />
+      </div>
         <h3 className="mt-4 text-lg font-semibold text-slate-900">{service.title}</h3>
         <p className="mt-2 text-sm text-slate-600">{service.description}</p>
         <ul className="mt-4 space-y-1.5 text-sm text-slate-700">

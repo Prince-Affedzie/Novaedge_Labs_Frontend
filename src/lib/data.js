@@ -1,4 +1,11 @@
 
+import {
+  ShoppingBag,
+  Clapperboard,
+  Target,
+  Code2,
+} from "lucide-react";
+
 export const SITE = {
   name: "NovaEdge Labs",
   tagline:
@@ -19,7 +26,7 @@ export const navLinks = [
 export const services = [
   {
     priority: "core",
-    icon: "🛍️",
+    icon: ShoppingBag,
     image: "/images/online-store.jpg",
     title: "Ready-to-Launch Online Stores",
     description:
@@ -34,7 +41,7 @@ export const services = [
   },
   {
     priority: "core",
-    icon: "🎬",
+    icon: Clapperboard,
     image: "/images/content-growth.jpg",
     title: "Social Media & Content Growth",
     description:
@@ -49,7 +56,7 @@ export const services = [
   },
   {
     priority: "core",
-    icon: "🎯",
+    icon: Target,
     image: "/images/social-ads.jpg",
     title: "Targeted Social Media Advertising",
     description:
@@ -64,7 +71,7 @@ export const services = [
   },
   {
     priority: "specialized",
-    icon: "💻",
+    icon: Code2,
     image: "/images/custom-software.jpg",
     title: "Custom Software Solutions",
     description:
