@@ -1,3 +1,4 @@
+import { cacheLife } from "next/cache";
 import { fallbackProjects } from "./data";
 
 const API = process.env.NEXT_PUBLIC_API_URL;
@@ -12,35 +13,54 @@ async function request(path, options = {}) {
   return res.json();
 }
 
-// Portfolio: falls back to static data so the site never looks empty or broken.
+/* ---- Cached fetchers: throw on failure so errors are never cached ---- */
+
+async function fetchProjects() {
+  "use cache";
+  cacheLife("minutes");
+  return request("/projects");
+}
+
+async function fetchPosts() {
+  "use cache";
+  cacheLife("minutes");
+  return request("/posts");
+}
+
+async function fetchPost(slug) {
+  "use cache";
+  cacheLife("minutes");
+  return request(`/posts/${slug}`);
+}
+
+/* ---- Public helpers: same names and behaviour as before ---- */
+
 export async function getProjects() {
   try {
-    const data = await request("/projects", { next: { revalidate: 60 } });
+    const data = await fetchProjects();
     return data.length ? data : fallbackProjects;
   } catch {
     return fallbackProjects;
   }
 }
 
-// Blog list: empty array if the API is down.
 export async function getPosts() {
   try {
-    return await request("/posts", { next: { revalidate: 60 } });
+    return await fetchPosts();
   } catch {
     return [];
   }
 }
 
-// Single post: null if missing or the API is down.
 export async function getPost(slug) {
   try {
-    return await request(`/posts/${slug}`, { next: { revalidate: 60 } });
+    return await fetchPost(slug);
   } catch {
     return null;
   }
 }
 
-// For the admin dashboard later.
+// Not cached: called from the admin login form later.
 export async function loginAdmin(email, password) {
   return request("/auth/login", {
     method: "POST",
