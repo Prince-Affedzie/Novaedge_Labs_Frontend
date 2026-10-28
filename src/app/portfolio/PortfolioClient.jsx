@@ -1,7 +1,3 @@
-
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 import CTA from "@/components/CTA";
@@ -28,39 +24,9 @@ const portfolioHighlights = [
   },
 ];
 
-export default function PortfolioClient() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let active = true;
-
-    async function loadProjects() {
-      try {
-        const data = await getProjects();
-
-        if (active) {
-          setProjects(Array.isArray(data) ? data : []);
-        }
-      } catch (error) {
-        console.error("Failed to fetch projects:", error);
-
-        if (active) {
-          setProjects([]);
-        }
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
-      }
-    }
-
-    loadProjects();
-
-    return () => {
-      active = false;
-    };
-  }, []);
+export default async function PortfolioClient() {
+  const data = await getProjects();
+  const projects = Array.isArray(data) ? data : [];
 
   return (
     <>
@@ -181,31 +147,8 @@ export default function PortfolioClient() {
             </div>
           </div>
 
-          {/* Loading state */}
-          {loading && (
-            <div
-              role="status"
-              className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {[1, 2, 3].map((item) => (
-                <div
-                  key={item}
-                  className="animate-pulse overflow-hidden rounded-2xl border border-slate-200"
-                >
-                  <div className="aspect-[4/3] bg-slate-100" />
-                  <div className="space-y-3 p-5">
-                    <div className="h-4 w-2/3 rounded bg-slate-100" />
-                    <div className="h-3 w-full rounded bg-slate-100" />
-                    <div className="h-3 w-4/5 rounded bg-slate-100" />
-                  </div>
-                </div>
-              ))}
-              <span className="sr-only">Loading portfolio projects...</span>
-            </div>
-          )}
-
           {/* Projects */}
-          {!loading && projects.length > 0 && (
+          {projects.length > 0 && (
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
                 <ProjectCard
@@ -217,7 +160,7 @@ export default function PortfolioClient() {
           )}
 
           {/* Empty state */}
-          {!loading && projects.length === 0 && (
+          {projects.length === 0 && (
             <div className="mt-10 rounded-3xl border border-dashed border-slate-300 bg-slate-50 px-6 py-14 text-center sm:px-12">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-teal-700 shadow-sm">
                 <svg
@@ -292,9 +235,7 @@ export default function PortfolioClient() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <span className="text-2xl" aria-hidden="true">
-                  <icon name="target" />
-                </span>
+                <span className="text-2xl" aria-hidden="true">🎯</span>
                 <h3 className="mt-4 font-bold text-slate-950">
                   Built around your goals
                 </h3>
@@ -305,9 +246,7 @@ export default function PortfolioClient() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:mt-8">
-                <span className="text-2xl" aria-hidden="true">
-                  <icon name="layers-3" />
-                </span>
+                <span className="text-2xl" aria-hidden="true">🧩</span>
                 <h3 className="mt-4 font-bold text-slate-950">
                   Practical solutions
                 </h3>
@@ -318,9 +257,7 @@ export default function PortfolioClient() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                <span className="text-2xl" aria-hidden="true">
-                  <icon name="handshake" />
-                </span>
+                <span className="text-2xl" aria-hidden="true">🤝</span>
                 <h3 className="mt-4 font-bold text-slate-950">
                   Clear expectations
                 </h3>
@@ -331,9 +268,7 @@ export default function PortfolioClient() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:mt-8">
-                <span className="text-2xl" aria-hidden="true">
-                  <icon name="trending-up" />
-                </span>
+                <span className="text-2xl" aria-hidden="true">📈</span>
                 <h3 className="mt-4 font-bold text-slate-950">
                   Room to grow
                 </h3>

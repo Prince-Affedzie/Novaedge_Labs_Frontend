@@ -1,7 +1,3 @@
-
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
@@ -12,33 +8,8 @@ import { services, pricing, steps } from "@/lib/data";
 import { getProjects } from "@/lib/api";
 import { whatsappLink } from "@/lib/whatsapp";
 
-export default function HomeClient() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let active = true;
-
-    getProjects()
-      .then((data) => {
-        if (active) {
-          setProjects(
-            Array.isArray(data) ? data.slice(0, 3) : []
-          );
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to fetch projects:", err);
-        if (active) setProjects([]);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
+export default async function HomeClient() {
+  const projects = (await getProjects()).slice(0, 3);
 
   const coreServices = services.filter(
     (service) => service.priority === "core"
@@ -88,27 +59,21 @@ export default function HomeClient() {
 
           <div className="mt-10 grid max-w-3xl gap-4 border-t border-slate-800 pt-6 sm:grid-cols-3">
             <div>
-              <p className="font-semibold text-white">
-                Launch online
-              </p>
+              <p className="font-semibold text-white">Launch online</p>
               <p className="mt-1 text-sm text-slate-400">
                 Your own branded online store.
               </p>
             </div>
 
             <div>
-              <p className="font-semibold text-white">
-                Build your audience
-              </p>
+              <p className="font-semibold text-white">Build your audience</p>
               <p className="mt-1 text-sm text-slate-400">
                 Consistent, strategic content.
               </p>
             </div>
 
             <div>
-              <p className="font-semibold text-white">
-                Generate enquiries
-              </p>
+              <p className="font-semibold text-white">Generate enquiries</p>
               <p className="mt-1 text-sm text-slate-400">
                 Targeted campaigns with measurable goals.
               </p>
@@ -128,10 +93,7 @@ export default function HomeClient() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {coreServices.map((service) => (
-              <ServiceCard
-                key={service.title}
-                service={service}
-              />
+              <ServiceCard key={service.title} service={service} />
             ))}
           </div>
         </div>
@@ -149,10 +111,7 @@ export default function HomeClient() {
 
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {specializedServices.map((service) => (
-                <ServiceCard
-                  key={service.title}
-                  service={service}
-                />
+                <ServiceCard key={service.title} service={service} />
               ))}
             </div>
           </div>
@@ -200,20 +159,10 @@ export default function HomeClient() {
             subtitle="Preview our approach to online stores, websites and marketing creatives. Demo projects are illustrative unless explicitly identified as client work."
           />
 
-          {loading ? (
-            <div
-              className="mt-12 text-center text-slate-500"
-              role="status"
-            >
-              Loading projects...
-            </div>
-          ) : projects.length > 0 ? (
+          {projects.length > 0 ? (
             <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
-                <ProjectCard
-                  key={project._id}
-                  project={project}
-                />
+                <ProjectCard key={project._id} project={project} />
               ))}
             </div>
           ) : (
@@ -257,10 +206,7 @@ export default function HomeClient() {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {pricing.map((plan) => (
-              <PricingCard
-                key={plan.name}
-                plan={plan}
-              />
+              <PricingCard key={plan.name} plan={plan} />
             ))}
           </div>
 
