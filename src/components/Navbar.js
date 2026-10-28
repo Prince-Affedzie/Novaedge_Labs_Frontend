@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -45,83 +44,85 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div className="container-x flex h-16 items-center justify-between">
-        {/* Logo and brand */}
-        <Link
-          href="/"
-          className="relative z-50 flex items-center gap-2.5 text-lg font-bold tracking-tight"
-          aria-label="NovaEdge Labs home"
-        >
-          <Image
-            src={NovaEdgeLabs_logo}
-            alt="NovaEdge Labs logo"
-            width={36}
-            height={36}
-            className="h-9 w-auto object-contain"
-            priority
-          />
-          <span>
-            Nova<span className="text-indigo-600">Edge</span> Labs
-          </span>
-        </Link>
+    <>
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+        <div className="container-x flex h-16 items-center justify-between">
+          {/* Logo and brand */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 text-lg font-bold tracking-tight"
+            aria-label="NovaEdge Labs home"
+          >
+            <Image
+              src={NovaEdgeLabs_logo}
+              alt="NovaEdge Labs logo"
+              width={36}
+              height={36}
+              className="h-9 w-auto object-contain"
+              priority
+            />
+            <span>
+              Nova<span className="text-indigo-600">Edge</span> Labs
+            </span>
+          </Link>
 
-        {/* Desktop navigation */}
-        <nav className="desktop-nav">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={linkClass(link.href)}
-              aria-current={pathname === link.href ? "page" : undefined}
+          {/* Desktop navigation */}
+          <nav className="desktop-nav">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={linkClass(link.href)}
+                aria-current={pathname === link.href ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-whatsapp !py-2"
             >
-              {link.label}
-            </Link>
-          ))}
+              WhatsApp us
+            </a>
+          </nav>
 
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-whatsapp !py-2"
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            onClick={() => setOpen((current) => !current)}
+            className="rounded-lg p-2 text-slate-700 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 md:hidden"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
-            WhatsApp us
-          </a>
-        </nav>
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              {open ? (
+                <path d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </header>
 
-        {/* Mobile menu toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((current) => !current)}
-          className="relative z-50 rounded-lg p-2 text-slate-700 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 md:hidden"
-          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-        >
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            {open ? (
-              <path d="M6 6l12 12M18 6L6 18" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            )}
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile overlay */}
+      {/* Mobile overlay (outside the header so "fixed" means the screen) */}
       <div
         aria-hidden="true"
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 z-40 bg-slate-950/40 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 bg-slate-950/40 transition-opacity duration-300 md:hidden ${
           open
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -133,16 +134,14 @@ export default function Navbar() {
         id="mobile-navigation"
         aria-label="Mobile navigation"
         aria-hidden={!open}
-        className={`fixed right-0 top-0 z-40 flex h-dvh w-[min(85vw,360px)] flex-col border-l border-slate-200 bg-white shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed right-0 top-0 z-[60] flex h-dvh w-[min(85vw,360px)] flex-col border-l border-slate-200 bg-white shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ visibility: open ? "visible" : "hidden" }}
       >
         {/* Panel heading */}
         <div className="flex h-16 shrink-0 items-center justify-between border-b border-slate-100 px-5">
-          <span className="text-base font-semibold text-slate-900">
-            Menu
-          </span>
+          <span className="text-base font-semibold text-slate-900">Menu</span>
 
           <button
             type="button"
@@ -237,6 +236,6 @@ export default function Navbar() {
           </p>
         </div>
       </nav>
-    </header>
+    </>
   );
 }

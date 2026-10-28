@@ -15,7 +15,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-slate-800 bg-slate-950 text-slate-300">
+    <footer className="border-t border-slate-800 bg-slate-950 text-slate-300 overflow-hidden">
       <div className="container-x grid gap-10 py-12 text-center md:grid-cols-3 md:gap-8 md:text-left">
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start">
