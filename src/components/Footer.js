@@ -42,7 +42,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Page links */}
+        {/* Navigation */}
         <div>
           <p className="text-sm font-semibold text-white">Explore</p>
 
@@ -60,7 +60,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact details */}
+        {/* Contact */}
         <div>
           <p className="text-sm font-semibold text-white">Get in touch</p>
 
@@ -81,7 +81,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="border-t border-slate-800 px-4 py-5 text-center text-xs text-slate-500">
-        © {year ?? new Date().getFullYear()} {SITE.name}. All rights reserved.
+        © {year || "2026"} {SITE.name}. All rights reserved.
       </div>
     </footer>
   );
