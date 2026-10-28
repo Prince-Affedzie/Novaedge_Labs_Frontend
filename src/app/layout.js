@@ -33,7 +33,9 @@ export const metadata = {
   keywords: [
     "web design Ghana",
     "website development Ghana",
+    "e-commerce website",
     "e-commerce website Ghana",
+    "e-commerce website builder",
     "online store development Ghana",
     "social media marketing Ghana",
     "content creation Ghana",

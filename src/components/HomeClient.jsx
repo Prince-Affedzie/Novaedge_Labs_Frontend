@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
 import ProjectCard from "@/components/ProjectCard";
@@ -22,8 +23,20 @@ export default async function HomeClient() {
   return (
     <>
       {/* Hero */}
-      <section className="overflow-hidden bg-slate-950">
-        <div className="container-x py-20 sm:py-28">
+     <section className="relative isolate overflow-hidden bg-slate-950">
+  <Image
+    src="/images/hero.jpg"
+    alt=""
+    fill
+    priority
+    sizes="100vw"
+    className="-z-20 object-cover opacity-40"
+  />
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/30"
+  />
+  <div className="container-x py-20 sm:py-28">
           <p className="text-sm font-semibold uppercase tracking-wider text-teal-400">
             Digital growth & technology agency · Ghana
           </p>

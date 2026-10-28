@@ -20,6 +20,7 @@ export const services = [
   {
     priority: "core",
     icon: "🛍️",
+    image: "/images/online-store.jpg",
     title: "Ready-to-Launch Online Stores",
     description:
       "Get a branded, mobile-friendly online store without building everything from scratch. We customize and deploy your storefront so customers can browse your products and place orders.",
@@ -34,6 +35,7 @@ export const services = [
   {
     priority: "core",
     icon: "🎬",
+    image: "/images/content-growth.jpg",
     title: "Social Media & Content Growth",
     description:
       "Build a consistent social media presence with a strategy tailored to your business, products, audience and goals. We plan and produce content under an agreed service contract.",
@@ -48,6 +50,7 @@ export const services = [
   {
     priority: "core",
     icon: "🎯",
+    image: "/images/social-ads.jpg",
     title: "Targeted Social Media Advertising",
     description:
       "Reach potential customers with focused advertising campaigns designed around your business goals, whether you want more qualified enquiries, leads or sales.",
@@ -62,6 +65,7 @@ export const services = [
   {
     priority: "specialized",
     icon: "💻",
+    image: "/images/custom-software.jpg",
     title: "Custom Software Solutions",
     description:
       "Replace manual processes with practical digital tools built around how your business operates. Every project begins with understanding the problem and agreeing on a realistic scope.",
@@ -177,8 +181,8 @@ export const steps = [
 export const fallbackProjects = [
   {
     _id: "demo-fashion",
-    title: "Online Fashion Store",
-    slug: "fashion-store-demo",
+    title: "Online e-commerce Stores",
+    slug: "ecommerce-demo",
     category: "ecommerce",
     summary:
       "An illustrative online store with product browsing, product details, a shopping cart and WhatsApp order submission.",
@@ -188,7 +192,7 @@ export const fallbackProjects = [
   },
   {
     _id: "demo-landing",
-    title: "Business Landing Page",
+    title: "Business Landing Pages",
     slug: "service-landing-demo",
     category: "website",
     summary:
