@@ -60,23 +60,34 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact */}
-        <div>
-          <p className="text-sm font-semibold text-white">Get in touch</p>
+        
+{/* Contact */}
+<div>
+  <p className="text-sm font-semibold text-white">Get in touch</p>
 
-          <ul className="mt-4 space-y-3 text-sm text-slate-400">
-            <li className="break-words">
-              <a
-                href={`mailto:${SITE.email}`}
-                className="transition-colors duration-200 hover:text-white"
-              >
-                {SITE.email}
-              </a>
-            </li>
+  <ul className="mt-4 space-y-3 text-sm text-slate-400">
+    <li className="break-words">
+      <a
+        href={`mailto:${SITE.email}`}
+        className="transition-colors duration-200 hover:text-white"
+      >
+        {SITE.email}
+      </a>
+    </li>
 
-            <li>Haatso, Accra, Ghana</li>
-          </ul>
-        </div>
+    <li>
+      <a
+        href={`tel:+${SITE.phone}`}
+        className="transition-colors duration-200 hover:text-white"
+      >
+        +{SITE.phone}
+      </a>
+    </li>
+
+    <li>Haatso, Accra, Ghana</li>
+  </ul>
+</div>
+
       </div>
 
       {/* Copyright */}

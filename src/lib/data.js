@@ -11,6 +11,7 @@ export const SITE = {
   tagline:
     "Launch online. Grow your audience. Generate more business.",
   email: "contact@novaedgelabs.com",
+  phone: "233505671577",
   url: "https://novaedgelabs.com",
 };
 
