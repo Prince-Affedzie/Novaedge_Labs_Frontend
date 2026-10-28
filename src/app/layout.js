@@ -28,6 +28,10 @@ export const metadata = {
     template: `%s | ${SITE.name}`,
   },
 
+  verification: {
+    google: "azK3uthtsHTDW03DoDZiMH8TjilWwJa4I6r0KYyqXFs",
+  },
+
   description: siteDescription,
 
   keywords: [
