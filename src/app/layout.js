@@ -130,6 +130,7 @@ export default function RootLayout({ children }) {
 
         <Footer />
         <WhatsAppButton />
+        
         <Analytics />
       </body>
     </html>
