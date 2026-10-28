@@ -1,4 +1,6 @@
+
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { navLinks, SITE } from "@/lib/data";
@@ -13,46 +15,73 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
-      <div className="container-x grid gap-8 py-12 md:grid-cols-3">
-        <div>
-          {/* Logo and Brand Name */}
-          <div className="flex items-center gap-2.5">
-            <Image 
-              src={NovaEdgeLabs_logo} 
-              alt="NovaEdgeLabs Logo" 
-              width={32} 
-              height={32} 
-              className="h-8 w-auto object-contain" 
+    <footer className="border-t border-slate-800 bg-slate-950 text-slate-300">
+      <div className="container-x grid gap-10 py-12 text-center md:grid-cols-3 md:gap-8 md:text-left">
+        {/* Brand */}
+        <div className="flex flex-col items-center md:items-start">
+          <Link
+            href="/"
+            className="flex items-center justify-center gap-2.5"
+            aria-label="NovaEdge Labs home"
+          >
+            <Image
+              src={NovaEdgeLabs_logo}
+              alt="NovaEdge Labs logo"
+              width={32}
+              height={32}
+              className="h-8 w-auto object-contain"
             />
-            <p className="text-lg font-bold text-white">
+
+            <span className="text-lg font-bold text-white">
               Nova<span className="text-indigo-400">Edge</span> Labs
-            </p>
-          </div>
-          <p className="mt-2 max-w-xs text-sm text-slate-400">{SITE.tagline}</p>
+            </span>
+          </Link>
+
+          <p className="mt-3 max-w-xs text-sm leading-6 text-slate-400">
+            {SITE.tagline}
+          </p>
         </div>
 
+        {/* Page links */}
         <div>
-          <p className="text-sm font-semibold text-white">Pages</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            {navLinks.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="hover:text-white">{l.label}</Link>
+          <p className="text-sm font-semibold text-white">Explore</p>
+
+          <ul className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-3 text-sm md:flex-col md:items-start md:gap-2">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="transition-colors duration-200 hover:text-indigo-400"
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
+        {/* Contact details */}
         <div>
-          <p className="text-sm font-semibold text-white">Contact</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><a href={`mailto:${SITE.email}`} className="hover:text-white">{SITE.email}</a></li>
-            <li>Haatso Accra, Ghana</li>
+          <p className="text-sm font-semibold text-white">Get in touch</p>
+
+          <ul className="mt-4 space-y-3 text-sm text-slate-400">
+            <li className="break-words">
+              <a
+                href={`mailto:${SITE.email}`}
+                className="transition-colors duration-200 hover:text-white"
+              >
+                {SITE.email}
+              </a>
+            </li>
+
+            <li>Haatso, Accra, Ghana</li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-        © {year || "2026"} {SITE.name}. All rights reserved.
+
+      {/* Copyright */}
+      <div className="border-t border-slate-800 px-4 py-5 text-center text-xs text-slate-500">
+        © {year ?? new Date().getFullYear()} {SITE.name}. All rights reserved.
       </div>
     </footer>
   );
