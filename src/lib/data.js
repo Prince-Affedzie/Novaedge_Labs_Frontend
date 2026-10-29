@@ -188,15 +188,16 @@ export const steps = [
 // Used when the API is unreachable or the database is empty.
 export const fallbackProjects = [
   {
-    _id: "demo-fashion",
+    _id: "demo-ecommerce",
     title: "Online e-commerce Stores",
     slug: "ecommerce-demo",
     category: "ecommerce",
     summary:
       "An illustrative online store with product browsing, product details, a shopping cart and WhatsApp order submission.",
-    liveUrl: "/demo/fashion",
+    liveUrl: "/demo/ecommerce",
     isDemo: true,
     featured: true,
+    image: "/images/online-store-1.png",
   },
   {
     _id: "demo-landing",
@@ -207,6 +208,7 @@ export const fallbackProjects = [
       "An illustrative business website with a clear offer, service information and direct customer enquiries.",
     liveUrl: "/demo/landing",
     isDemo: true,
+    image: "/images/landing-page.jpg", 
   },
   {
     _id: "demo-social",
@@ -216,5 +218,7 @@ export const fallbackProjects = [
     summary:
       "Illustrative promotional creatives demonstrating how content can communicate a product offer and encourage customer action.",
     isDemo: true,
+    image: "/images/social-ad.png"
   },
 ];
+
